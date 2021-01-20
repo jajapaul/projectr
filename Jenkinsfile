@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Dokcer-Build') {
             steps {
-                sh '''docker build -f Dockerfile -t projectr .'''
+                sh '''docker build -f Dockerfile.R -t projectr .'''
             }
         }
         stage('Dokcer-Run') {
