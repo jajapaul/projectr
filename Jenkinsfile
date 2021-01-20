@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Dokcer-Run') {
             steps {
-                sh '''docker run -d -p 8787:8787 --name myContainerName -e USER='admin' -e PASSWORD='password' -e ROOT=TRUE projectr'''
+                sh '''docker run -d -p 8787:8787 --name rstudiocontainer -e USER='admin' -e PASSWORD='admin' -e ROOT=TRUE projectr'''
             }
         }
     }
