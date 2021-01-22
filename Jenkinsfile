@@ -16,5 +16,11 @@ pipeline {
                 
             }
         }
+        stage('Docker-Test') {
+            step {
+                echo 'Validating if container is running..!'
+                sh 'docker ps | grep projectr'
+            }
+        }
     }
 }
