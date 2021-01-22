@@ -11,7 +11,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'projectr', passwordVariable: 'password', usernameVariable: 'user')]) {
                     // some block
-                    sh '''docker run -d -p 8787:8787 --name rstudiocontainer -e USER="${user}" -e PASSWORD="${password}" -e ROOT=TRUE projectr'''
+                    sh "docker run -d -p 8787:8787 --name rstudiocontainer -e USER=${user} -e PASSWORD=${password} -e ROOT=TRUE projectr"
                 }
                 
             }
