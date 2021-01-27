@@ -30,7 +30,7 @@ pipeline {
         stage('Docker-Test') {
             steps {
                 echo 'Validating if container is running..!'
-                sh 'docker ps | grep projectr | docker inspect'
+                sh 'docker ps | grep projectr'
             }
         }
     }
