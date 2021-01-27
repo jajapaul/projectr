@@ -2,12 +2,12 @@ pipeline {
     agent any
 
     stages {
-        stage('Dokcer-Build') {
+        stage('Docker-Build') {
             steps {
                 sh '''docker build -f Dockerfile.R -t projectr .'''
             }
         }
-        stage('Dokcer-Run1') {
+        stage('Docker-Run1') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'projectr', passwordVariable: 'password', usernameVariable: 'user')]) {
                     // some block
@@ -17,7 +17,7 @@ pipeline {
             }
         }
 
-    stage('Dokcer-Run2') {
+    stage('Docker-Run2') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'projectr', passwordVariable: 'password', usernameVariable: 'user')]) {
                     // some block
