@@ -33,5 +33,12 @@ pipeline {
                 sh 'docker ps | grep projectr'
             }
         }
+        
+        stage('Smoke-Test') {
+            steps {
+                echo 'Running Selenium Test cases'
+                sh 'python test/sample.py'
+            }
+        }
     }
 }
