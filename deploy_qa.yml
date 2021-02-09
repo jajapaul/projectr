@@ -1,0 +1,57 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: rstudio
+  namespace: qa
+spec:
+  ports:
+    - protocol: TCP
+      port: 8787
+      targetPort: 8787
+      nodePort: 30001
+  selector:
+    name: rstudio
+  type: NodePort
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: rstudio
+  namespace: qa
+  labels:
+    name: rstudio
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: rstudio
+  template:
+    metadata:
+      labels:
+        name: rstudio
+    spec:
+      containers:
+        - name: rstudio
+          image: projectr
+          ports:
+            - containerPort: 8787
+              protocol: TCP
+          env:
+            - name: ROOT
+              value: 'TRUE'
+            - name: USER
+              valueFrom:
+                secretKeyRef:
+                  name: rstudio
+                  key: username
+            - name: PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: rstudio
+                  key: password
+          imagePullPolicy: Never
+      restartPolicy: Always
+      tolerations:
+        - key: node-role.kubernetes.io/master
+          effect: NoSchedule
