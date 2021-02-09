@@ -50,7 +50,7 @@ pipeline {
         
         stage('Deploy k8 dev') {
             steps {
-                sh 'kubectl apploy -f deploy_dev.yml'
+                sh 'kubectl apply -f deploy_dev.yml'
             }
         }
     }
