@@ -48,9 +48,9 @@ pipeline {
             }
         }
         
-        stage('Deploy k8 dev') {
+        stage('Deploy k8') {
             steps {
-                sh 'kubectl apply -f deploy_dev.yml'
+                sh 'kubectl apply -f deploy_dev.yml && kubectl apply -f deploy_qa.yml'
             }
         }
     }
