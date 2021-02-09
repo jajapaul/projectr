@@ -47,5 +47,11 @@ pipeline {
                 sh 'docker stop rstudio.dev && docker stop rstudio.test && docker rm rstudio.dev && docker rm rstudio.test'
             }
         }
+        
+        stage('Deploy k8 dev') {
+            steps {
+                sh 'kubectl apploy -f deploy_dev.yml'
+            }
+        }
     }
 }
