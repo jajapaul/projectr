@@ -40,5 +40,12 @@ pipeline {
                 sh 'python3 test/sample.py'
             }
         }
+        
+        stage('Destroy Containers') {
+            steps {
+                echo 'Delete Docker Containers'
+                sh 'docker stop rstudio.dev && docker stop rstudio.test && docker rm rstudio.dev && docker rm rstudio.test'
+            }
+        }
     }
 }
